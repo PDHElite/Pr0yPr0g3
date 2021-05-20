@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:necflislogymenu/series.dart';
 import 'package:necflislogymenu/signup.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: SpalshScreen(),
 
     );
   }
@@ -166,7 +167,7 @@ class _HomeState extends State<Home> {
 
                     child: InkWell(
                       onTap: (){
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => signup())); //series
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => series())); //series
                       },
                       child: Text("LOGIN",
                       style: TextStyle(
