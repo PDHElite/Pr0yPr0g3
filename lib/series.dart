@@ -78,95 +78,89 @@ class _seriesState extends State<series> {
             ],
           ),
 
-          body: Container(
-            color: Colors.black,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+        body: Container(
+          color: Colors.black,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 20,),
-                SingleChildScrollView(
-                  child: Container(
-                   margin: EdgeInsets.only(left: 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height-350,
-                          width: MediaQuery.of(context).size.width-10,
-                          child: Image.asset("assets/bposter5.jpg",fit: BoxFit.fill,),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
+                Container(
+                  margin: EdgeInsets.only(left: 10),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height-350,
+                        width: MediaQuery.of(context).size.width-10,
+                       child: Image.asset("assets/bposter5.jpg",fit: BoxFit.fill,),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
                               padding: EdgeInsets.only(top: 150, left:10),
                               child: Text("Aggretsuko",
-                              style: TextStyle(
+                                style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 25,
-                                  fontWeight: FontWeight.w600,
-                              ),
-                              ),
-                            ),
-
-                            SizedBox(height: 10,),
-                            Container(
-
-                              alignment: Alignment.center,
-                              height: 35,
-                              width: 150,
-                              margin: EdgeInsets.only(left: 15,),
-                              decoration: BoxDecoration(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w600
+                              ),)
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            alignment: Alignment.center,
+                            width: 150,
+                            height: 35,
+                            margin: EdgeInsets.only(left: 15),
+                            decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.red,
-                                border: Border.all(width: 2,color: Colors.red),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 50,
-                                    spreadRadius: 3,
-                                    color: Colors.red,
-                                  )
-                                ]
-                              ),
+                              border: Border.all(width: 2,color: Colors.red),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 50,
+                                  spreadRadius: 3,
+                                  color: Colors.red
+                                )
+                              ]
+                            ),
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.alphabetic,
                               children: [
                                 SizedBox(width: 10,),
-                                Icon(FontAwesomeIcons.playCircle,size: 22, color: Colors.white,),
+                                Icon(FontAwesomeIcons.playCircle,size: 22,color: Colors.white,),
                                 SizedBox(width: 10,),
-                                Text("Resume", style: TextStyle(
+                                Text("Resume",style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 22,
-                                  fontStyle: FontStyle.italic,
-                                  letterSpacing: 1,
-
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1
                                 ),)
                               ],
                             ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-
-
                 SizedBox(height: 25,),
                 Padding(
                     padding: EdgeInsets.only(left: 13),
                     child: Text("Recently Watched",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w600
+                        fontSize: 25,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w600
                       ),
                     )
                 ),
-
                 SizedBox(height: 5,),
                 Container(
                   height: 220,
@@ -183,7 +177,6 @@ class _seriesState extends State<series> {
                     },
                   ),
                 ),
-
                 SizedBox(height: 25,),
                 Padding(
                     padding: EdgeInsets.only(left: 13),
@@ -212,10 +205,10 @@ class _seriesState extends State<series> {
                     },
                   ),
                 ),
-
               ],
             ),
           ),
+        ),
 
         )
     );
