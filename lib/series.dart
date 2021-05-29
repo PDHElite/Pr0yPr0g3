@@ -35,7 +35,7 @@ class _seriesState extends State<series> {
             elevation: 0.0,
             centerTitle: true,
             backgroundColor: Colors.black,
-            leading: Icon(FontAwesomeIcons.search),
+
             title: Image.asset("assets/nlogo.png", height: 45, width: 100,),
             actions: [
               Padding(
@@ -44,39 +44,7 @@ class _seriesState extends State<series> {
               ),
             ],
           ),
-          bottomNavigationBar: BottomNavigationBar(
 
-            backgroundColor: Colors.black,
-            selectedItemColor: Colors.red,
-            unselectedItemColor: Colors.white,
-
-            items: [
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(FontAwesomeIcons.home, size: 22,),
-                  ),
-                  // ignore: deprecated_member_use
-                  title: Text("Home",style: TextStyle(color: Colors.white,fontSize: 18))
-              ),
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(Icons.play_arrow, size: 25,),
-                  ),
-                  // ignore: deprecated_member_use
-                  title: Text("Coming Soon",style: TextStyle(color: Colors.white,fontSize: 18))
-              ),
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_downward, size: 25,),
-                  ),
-                  // ignore: deprecated_member_use
-                  title: Text("Download",style: TextStyle(color: Colors.white,fontSize: 18))
-              ),
-            ],
-          ),
 
         body: Container(
           color: Colors.black,
@@ -94,8 +62,9 @@ class _seriesState extends State<series> {
                     children: [
                       Container(
                         height: MediaQuery.of(context).size.height-350,
-                        width: MediaQuery.of(context).size.width-10,
-                       child: Image.asset("assets/bposter5.jpg",fit: BoxFit.fill,),
+                        width: MediaQuery.of(context).size.width,
+                       child:
+                       Image.asset("assets/bposter5.jpg",fit: BoxFit.fill,),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,

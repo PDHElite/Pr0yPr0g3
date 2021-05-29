@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:necflislogymenu/menu.dart';
 import 'package:necflislogymenu/series.dart';
 import 'package:necflislogymenu/signup.dart';
 
@@ -45,7 +46,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
 
       color: Colors.black,
       child: Center(
-        child: Image.asset('assets/inicionet.png', height: 150.0, width: 200.0,),
+        child: Image.asset('assets/logobig.PNG', height: 250.0, width: 300.0,),
       ),
     );
   }
@@ -69,7 +70,7 @@ class _HomeState extends State<Home> {
           resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            Image.asset("assets/logback.jpg",
+            Image.asset("assets/fondo.jpg",
               height: double.infinity,
               fit: BoxFit.cover,
             ),
@@ -89,13 +90,13 @@ class _HomeState extends State<Home> {
                 )
               ),
 
-              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0,),
+              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0,),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                      padding: EdgeInsets.only(left: 25.0, top: 35.0),
+                      padding: EdgeInsets.only(left: 25.0, top: 25.0),
                       child: Image.asset("assets/logon.png", height: 80.0, width: 500.0,),
 
                   ),
@@ -167,7 +168,7 @@ class _HomeState extends State<Home> {
 
                     child: InkWell(
                       onTap: (){
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => series())); //series
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => menu()));
                       },
                       child: Text("LOGIN",
                       style: TextStyle(
@@ -224,7 +225,7 @@ class _HomeState extends State<Home> {
                     height: 25,
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 40),
+                    margin: EdgeInsets.only(left: 25),
                     child: Row(
                       children: [
                         Text("Does not have an account?",
@@ -248,8 +249,9 @@ class _HomeState extends State<Home> {
                                 fontSize: 17,
                                 fontStyle: FontStyle.italic,
                                 letterSpacing: 2,
-                                decorationColor: Colors.red,
+
                                 decoration: TextDecoration.underline,
+                                decorationColor: Colors.red,
                                 decorationThickness: 1.5
                             ),
                           ),

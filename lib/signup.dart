@@ -19,7 +19,7 @@ class _signupState extends State<signup> {
           resizeToAvoidBottomInset: false,
           body: Stack(
             children: [
-              Image.asset("assets/logback.jpg",
+              Image.asset("assets/fondo.jpg",
                 height: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -36,16 +36,16 @@ class _signupState extends State<signup> {
                           Colors.black45,
                           Colors.black54,
                         ]
-                    )
+                    ),
                 ),
 
-                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0,),
+                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0,),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 25.0, top: 20),
+                      padding: EdgeInsets.only(left: 25.0, top: 15.0),
                       child: Image.asset("assets/logon.png", height: 80.0, width: 500.0,),
 
                     ),
@@ -116,7 +116,7 @@ class _signupState extends State<signup> {
                       ),
                     ),
 
-                    SizedBox(height: 20,),
+                    SizedBox(height: 25,),
                     Container(
                       alignment: Alignment.center,
                       height: 40,
@@ -146,11 +146,12 @@ class _signupState extends State<signup> {
                               fontWeight: FontWeight.w800,
                               fontSize: 20,
                               letterSpacing: 3
-                          ),),
+                          ),
+                        ),
                       ),
                     ),
 
-                    SizedBox(height: 25,),
+                    SizedBox(height: 30,),
                     InkWell(
                       onTap: (){
                         setState(() {
@@ -182,7 +183,7 @@ class _signupState extends State<signup> {
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontStyle: FontStyle.italic
-                              ),
+                              )
                             )
 
                           ],
@@ -190,16 +191,16 @@ class _signupState extends State<signup> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 25,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 40),
+                      margin: EdgeInsets.only(left: 25),
                       child: Row(
                         children: [
                           Text("Already Have an Account?",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: 17,
                                 fontStyle: FontStyle.italic,
                                 letterSpacing: 1
 
@@ -209,14 +210,14 @@ class _signupState extends State<signup> {
                             onTap: (){
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
                             },
-                            child: Text("Sign In",
+                            child: Text(" Sign In",
                               style: TextStyle(
                                   color: Colors.red,
-                                  fontSize: 18,
+                                  fontSize: 17,
                                   fontStyle: FontStyle.italic,
                                   letterSpacing: 1,
-                                  decorationColor: Colors.red,
                                   decoration: TextDecoration.underline,
+                                  decorationColor: Colors.red,
                                   decorationThickness: 1.5
                               ),
                             ),
