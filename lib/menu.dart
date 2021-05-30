@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:necflislogymenu/Searchname.dart';
+import 'package:necflislogymenu/comingsoon.dart';
+import 'package:necflislogymenu/more.dart';
+import 'package:necflislogymenu/searchcategory.dart';
 import 'package:necflislogymenu/series.dart';
 
 class menu extends StatefulWidget {
@@ -25,10 +29,10 @@ class _menuState extends State<menu> {
     [
 
       series(),
-      Text("Search"),
-      Text("Coming soon"),
-      Text("Dowloads"),
-      Text("More"),
+      Searchname(),
+      Comingsoon(),
+      Searchcategory(),
+      More(),
     ];
 
     return SafeArea(
@@ -73,9 +77,9 @@ class _menuState extends State<menu> {
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Icon(FontAwesomeIcons.download),
+                  child: Icon(FontAwesomeIcons.bookOpen),
                 ),
-                label: "Downloads",
+                label: "Category",
               ),
               BottomNavigationBarItem(
                 icon: Padding(
