@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Searchcategory extends StatefulWidget {
   const Searchcategory({Key key}) : super(key: key);
@@ -30,28 +31,24 @@ class _SearchcategoryState extends State<Searchcategory> {
               ),
               SizedBox(height: 10,),
               Container(
-                alignment: Alignment.center,
-                height: 50,
-                width: double.infinity,
-                margin: EdgeInsets.only(right: 25,left: 25),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: Colors.white
-                ),
-
-                child: Row(
-                  children: [
-                    SizedBox(width: 10,),
-                    Icon(Icons.search,size: 35,color: Colors.black,),
-                    SizedBox(width: 10,),
-                    Text("Beastars, Aggretsuko, Little W...",
-                      style: TextStyle(
-                        color: Colors.black45,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 18,
+                margin: EdgeInsets.all(25),
+                child: TextField(
+                  decoration: InputDecoration(
+                      suffixIcon: Icon(FontAwesomeIcons.search,color: Colors.red,),
+                      hintText: "Accion, Novela, Anime...",
+                      hintStyle: TextStyle(
+                          color: Colors.black87,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1
                       ),
-                    ),
-                  ],
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.black,width: 5)
+                      )
+                  ),
                 ),
               ),
               SizedBox(height: 15,),
@@ -154,16 +151,10 @@ class _SearchcategoryState extends State<Searchcategory> {
                         ,width: 60,),
                     ),
                   ),
-
-
                 ],
               ),
-            )
+            ),
         ),
-
-
-
-
       ],
     );
   }
