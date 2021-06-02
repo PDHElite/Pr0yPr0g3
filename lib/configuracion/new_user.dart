@@ -147,7 +147,7 @@ class _NewUserState extends State<NewUser> {
                       // ignore: deprecated_member_use
                       child: RaisedButton(
                         color: Colors.red,
-                        textColor: Theme.of(context).primaryColorLight,
+                        textColor: Colors.white,
                         child: Text(
                           'Cancel',
                           textScaleFactor: 1.5,
@@ -167,7 +167,7 @@ class _NewUserState extends State<NewUser> {
                       // ignore: deprecated_member_use
                       child: RaisedButton(
                         color: Colors.red,
-                        textColor: Theme.of(context).primaryColorLight,
+                        textColor: Colors.white,
                         child: Text(
                           'Save',
                           textScaleFactor: 1.5,

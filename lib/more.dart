@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:necflislogymenu/configuracion/new_user.dart';
+import 'package:necflislogymenu/configuracion/subscription.dart';
 import 'package:necflislogymenu/widgets/info_card.dart';
 
 class More extends StatefulWidget {
@@ -57,7 +58,7 @@ class _MoreState extends State<More> {
                 InfoCard(
                     text: Clientes, icon: Icons.phone, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewUser()));}),
                 InfoCard(
-                    text: Planes, icon: Icons.web, onPressed: () async {}),
+                    text: Planes, icon: Icons.web, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Subscription()));}),
                 InfoCard(
                     text: Pago,
                     icon: Icons.location_city,
