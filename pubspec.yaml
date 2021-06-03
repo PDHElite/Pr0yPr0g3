@@ -32,6 +32,7 @@ dependencies:
   flutter_credit_card: ^2.0.0
   font_awesome_flutter:
   cached_network_image:
+  liquid_swipe:
 
 dev_dependencies:
   flutter_test:

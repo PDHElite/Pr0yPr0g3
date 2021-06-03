@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:necflislogymenu/configuracion/equipo.dart';
 import 'package:necflislogymenu/menu.dart';
 import 'package:necflislogymenu/signup.dart';
 
@@ -14,10 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
-      home: SpalshScreen(),
-
+      home: Equipo(),
     );
   }
 }
