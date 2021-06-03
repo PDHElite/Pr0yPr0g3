@@ -15,17 +15,32 @@ class PForm extends StatefulWidget {
 class _PFormState extends State<PForm> with TickerProviderStateMixin {
   List<AnimationController> _controllers;
   List<Animation<double>> _annimations;
+  List<Animation<double>> _annimationsOpavity;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    _controllers = List.generate(
+        widget.pages.length,
+        (index) => AnimationController(
+            vsync: this, duration: Duration(milliseconds: 200), lowerBound: 0));
+    _annimations = _controllers
+        .map((_controller) =>
+            Tween<double>(begin: .1, end: 1).animate(_controller))
+        .toList();
+    _annimationsOpavity = _controllers
+        .map((_controller) =>
+            Tween<double>(begin: 0, end: 1).animate(_controller))
+        .toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: widget.pages.map((e) {
           int index = widget.pages.indexOf(e);
           return Stack(
@@ -33,17 +48,62 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
               if (index != widget.pages.length - 1)
                 Container(
                   margin: EdgeInsets.only(
-                    left: 15,
-                    top: 37,
+                    left: 2,
+                    top: 10,
                   ),
-                  width: 3,
-                  height: 70,
-                  color: Colors.grey,
+                  child: SizeTransition(
+                    sizeFactor: _annimations[index],
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        left: 13,
+                        top: 25,
+                      ),
+                      width: 3,
+                      height: 500,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
-              Container(
-                width: 35,
-                height: 35,
-                color: Colors.grey,
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          for (var i = 0; i < widget.pages.length; i++) {
+                            if (index == i) {
+                              if (_controllers[index].isCompleted)
+                                _controllers[index].reverse();
+                              else
+                                _controllers[index].animateTo(1);
+                            } else {
+                              if (_controllers[i].isCompleted)
+                                _controllers[i].reverse();
+                            }
+                            setState(() {});
+                          }
+                        },
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 50,
+                      ),
+                      Expanded(
+                          child: FadeTransition(
+                        opacity: _annimationsOpavity[index],
+                        child: e,
+                      ))
+                    ],
+                  )
+                ],
               ),
             ],
           );
