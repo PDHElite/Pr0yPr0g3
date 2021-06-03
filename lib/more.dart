@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:necflislogymenu/configuracion/new_user.dart';
 import 'package:necflislogymenu/configuracion/subscription.dart';
 import 'package:necflislogymenu/widgets/info_card.dart';
+import 'package:necflislogymenu/configuracion/equipo.dart';
 
 class More extends StatefulWidget {
   const More({Key key}) : super(key: key);
@@ -66,7 +67,7 @@ class _MoreState extends State<More> {
                 InfoCard(
                     text: Plantilla, icon: Icons.email, onPressed: () async {}),
                 InfoCard(
-                    text: Equipo, icon: Icons.email, onPressed: () async {}),
+                    text: Equipo, icon: Icons.email, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Equipox()));}),
               ],
             ),
           ),

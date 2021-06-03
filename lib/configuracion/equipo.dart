@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:necflislogymenu/menu.dart';
 
-class Equipo extends StatefulWidget {
-  const Equipo({Key key}) : super(key: key);
+class Equipox extends StatefulWidget {
+  const Equipox({Key key}) : super(key: key);
 
   @override
-  _EquipoState createState() => _EquipoState();
+  _EquipoxState createState() => _EquipoxState();
 }
 
-class _EquipoState extends State<Equipo> {
+class _EquipoxState extends State<Equipox> {
   Widget custum(String image, String text, Color clrs, String pagenum) {
     return Container(
       color: clrs,
@@ -47,7 +49,7 @@ class _EquipoState extends State<Equipo> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(right: 20,top: 180),
+            padding: EdgeInsets.only(right: 20,top: 120),
             alignment: Alignment.centerRight,
             width: double.infinity,
             child: Text(
@@ -68,16 +70,30 @@ class _EquipoState extends State<Equipo> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          leading: IconButton(
+            icon: Icon(CupertinoIcons.back),
+            onPressed: (){
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => menu()));
+            },
+          ),
+          title: Text(
+            'BACK',
+            style: TextStyle(color: Colors.white,fontSize: 14),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.black,
+        ),
         body: Container(
           child: Container(
             child: LiquidSwipe(
               pages: [
-                custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.cyan,"01"),
+                custum("assets/bposter5.jpg","William Alejandro Berganza Espina, 0907-16-7931", Colors.black,"01"),
                 custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.red,"02"),
                 custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.green,"03"),
                 custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.black,"04"),
                 custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.cyan,"05"),
-
               ],
             ),
           ),
