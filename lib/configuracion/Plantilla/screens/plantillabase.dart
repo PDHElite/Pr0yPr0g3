@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:necflislogymenu/configuracion/Plantilla/screens/page1.dart';
+import 'package:necflislogymenu/configuracion/Plantilla/screens/page2.dart';
+import 'package:necflislogymenu/configuracion/Plantilla/screens/page3.dart';
 import 'package:necflislogymenu/configuracion/Plantilla/widgets/progress.dart';
 
 class PlantillaBase extends StatefulWidget {
@@ -21,7 +24,7 @@ class _PlantillaBaseState extends State<PlantillaBase> {
             height: height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.red, Colors.black87],
+                colors: [Colors.black, Colors.black45],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -44,9 +47,9 @@ class _PlantillaBaseState extends State<PlantillaBase> {
                       children: [
                         PForm(
                           pages: [
-                            Text("Page 1"),
-                            Text("Page 2"),
-                            Text("Page 3"),
+                            Page1(),
+                            Page2(),
+                            Page3(),
                           ],
                           title: [
                             PTitle(),

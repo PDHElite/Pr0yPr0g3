@@ -16,6 +16,7 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
   List<AnimationController> _controllers;
   List<Animation<double>> _annimations;
   List<Animation<double>> _annimationsOpavity;
+  List<bool> activeColor;
 
   @override
   void initState() {
@@ -25,15 +26,39 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
     _controllers = List.generate(
         widget.pages.length,
         (index) => AnimationController(
-            vsync: this, duration: Duration(milliseconds: 200), lowerBound: 0));
+            vsync: this,
+            duration: Duration(milliseconds: 200),
+            lowerBound: .1));
     _annimations = _controllers
         .map((_controller) =>
-            Tween<double>(begin: .1, end: 1).animate(_controller))
+            Tween<double>(begin: .05, end: 1).animate(_controller))
         .toList();
     _annimationsOpavity = _controllers
         .map((_controller) =>
             Tween<double>(begin: 0, end: 1).animate(_controller))
         .toList();
+    activeColor = List.generate(widget.pages.length, (index) => false);
+  }
+
+  controlColor(int index) {
+    for (var i = 0; i < activeColor.length; i++) {
+      if (index == i) {
+        if (_controllers[index].isCompleted)
+          _controllers[index].reverse();
+        else
+          _controllers[index].animateTo(1);
+      } else {
+        if (_controllers[i].isCompleted) _controllers[i].reverse();
+      }
+    }
+
+    for (var i = 0; i <= index; i++) {
+      activeColor[i] = true;
+    }
+    for (var i = index + 1; i < activeColor.length; i++) {
+      activeColor[i] = false;
+    }
+    setState(() {});
   }
 
   @override
@@ -49,7 +74,7 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
                 Container(
                   margin: EdgeInsets.only(
                     left: 2,
-                    top: 10,
+                    top: 25,
                   ),
                   child: SizeTransition(
                     sizeFactor: _annimations[index],
@@ -59,8 +84,8 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
                         top: 25,
                       ),
                       width: 3,
-                      height: 500,
-                      color: Colors.grey,
+                      height: 250,
+                      color: activeColor[index+1]?Colors.red.withOpacity(.9): Colors.grey,
                     ),
                   ),
                 ),
@@ -70,23 +95,17 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
                     children: [
                       InkWell(
                         onTap: () {
-                          for (var i = 0; i < widget.pages.length; i++) {
-                            if (index == i) {
-                              if (_controllers[index].isCompleted)
-                                _controllers[index].reverse();
-                              else
-                                _controllers[index].animateTo(1);
-                            } else {
-                              if (_controllers[i].isCompleted)
-                                _controllers[i].reverse();
-                            }
-                            setState(() {});
-                          }
+                          controlColor(index);
                         },
                         child: Container(
                           width: 35,
                           height: 35,
-                          color: Colors.grey,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: activeColor[index]
+                                ? Colors.red.withOpacity(.9)
+                                : Colors.grey,
+                          ),
                         ),
                       ),
                     ],
@@ -99,7 +118,10 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
                       Expanded(
                           child: FadeTransition(
                         opacity: _annimationsOpavity[index],
-                        child: e,
+                        child: SizeTransition(
+                          sizeFactor: _annimations[index],
+                          child: e,
+                        ),
                       ))
                     ],
                   )
