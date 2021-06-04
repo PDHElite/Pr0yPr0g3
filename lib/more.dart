@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:necflislogymenu/configuracion/Plantilla/screens/plantillabase.dart';
 import 'package:necflislogymenu/configuracion/new_user.dart';
 import 'package:necflislogymenu/configuracion/subscription.dart';
 import 'package:necflislogymenu/widgets/info_card.dart';
@@ -65,7 +66,7 @@ class _MoreState extends State<More> {
                     icon: Icons.location_city,
                     onPressed: () async {}),
                 InfoCard(
-                    text: Plantilla, icon: Icons.email, onPressed: () async {}),
+                    text: Plantilla, icon: Icons.email, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PlantillaBase()));}),
                 InfoCard(
                     text: Equipo, icon: Icons.email, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Equipox()));}),
               ],

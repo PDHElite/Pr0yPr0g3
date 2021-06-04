@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 class PForm extends StatefulWidget {
-  //const PForm({Key key}) : super(key: key);
-
   final List<Widget> pages;
   final List<PTitle> title;
-
-  PForm({this.pages, this.title});
-
+  PFormController controller;
+  double height;
+  Color activeColor, disableColor;
+  PForm(
+      {this.pages,
+        this.title,
+        this.controller,
+        this.activeColor = Colors.red,
+        this.disableColor = Colors.grey,
+        this.height = 250});
   @override
   _PFormState createState() => _PFormState();
 }
@@ -17,41 +22,42 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
   List<Animation<double>> _annimations;
   List<Animation<double>> _annimationsOpavity;
   List<bool> activeColor;
-
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
 
     _controllers = List.generate(
         widget.pages.length,
-        (index) => AnimationController(
+            (index) => AnimationController(
             vsync: this,
             duration: Duration(milliseconds: 200),
-            lowerBound: .1));
+            lowerBound: .05));
     _annimations = _controllers
         .map((_controller) =>
-            Tween<double>(begin: .05, end: 1).animate(_controller))
+        Tween<double>(begin: 0, end: 1).animate(_controller))
         .toList();
     _annimationsOpavity = _controllers
         .map((_controller) =>
-            Tween<double>(begin: 0, end: 1).animate(_controller))
+        Tween<double>(begin: 0, end: 1).animate(_controller))
         .toList();
     activeColor = List.generate(widget.pages.length, (index) => false);
+
+    if (widget.controller != null) {
+      widget.controller.addListener(() {
+        controlColor(widget.controller.currentPage);
+      });
+    }
   }
 
   controlColor(int index) {
     for (var i = 0; i < activeColor.length; i++) {
       if (index == i) {
-        if (_controllers[index].isCompleted)
-          _controllers[index].reverse();
-        else
-          _controllers[index].animateTo(1);
+        if (!_controllers[i].isCompleted) _controllers[index].animateTo(1);
       } else {
         if (_controllers[i].isCompleted) _controllers[i].reverse();
       }
     }
-
     for (var i = 0; i <= index; i++) {
       activeColor[i] = true;
     }
@@ -59,6 +65,15 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
       activeColor[i] = false;
     }
     setState(() {});
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controllers.forEach((c) {
+      c.dispose();
+    });
   }
 
   @override
@@ -72,20 +87,16 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
             children: [
               if (index != widget.pages.length - 1)
                 Container(
-                  margin: EdgeInsets.only(
-                    left: 2,
-                    top: 25,
-                  ),
+                  margin: EdgeInsets.only(left: 2, top: 25),
                   child: SizeTransition(
                     sizeFactor: _annimations[index],
                     child: Container(
-                      margin: EdgeInsets.only(
-                        left: 13,
-                        top: 25,
-                      ),
+                      margin: EdgeInsets.only(left: 13, right: 25),
                       width: 3,
-                      height: 250,
-                      color: activeColor[index+1]?Colors.red.withOpacity(.9): Colors.grey,
+                      height: widget.height,
+                      color: activeColor[index + 1]
+                          ? widget.activeColor.withOpacity(.9)
+                          : widget.disableColor,
                     ),
                   ),
                 ),
@@ -103,11 +114,18 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: activeColor[index]
-                                ? Colors.red.withOpacity(.9)
-                                : Colors.grey,
+                                ? widget.activeColor.withOpacity(.9)
+                                : widget.disableColor,
                           ),
                         ),
                       ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      widget.title[index].copyWith(
+                          activeColor: activeColor[index]
+                              ? widget.activeColor
+                              : Colors.black)
                     ],
                   ),
                   Row(
@@ -117,16 +135,16 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
                       ),
                       Expanded(
                           child: FadeTransition(
-                        opacity: _annimationsOpavity[index],
-                        child: SizeTransition(
-                          sizeFactor: _annimations[index],
-                          child: e,
-                        ),
-                      ))
+                            opacity: _annimationsOpavity[index],
+                            child: SizeTransition(
+                              sizeFactor: _annimations[index],
+                              child: e,
+                            ),
+                          ))
                     ],
                   )
                 ],
-              ),
+              )
             ],
           );
         }).toList(),
@@ -136,10 +154,60 @@ class _PFormState extends State<PForm> with TickerProviderStateMixin {
 }
 
 class PTitle extends StatelessWidget {
-  const PTitle({Key key}) : super(key: key);
-
+  String title, subTitle;
+  Color activeColor;
+  PTitle({this.activeColor, this.subTitle, @required this.title});
   @override
   Widget build(BuildContext context) {
-    return Container();
+    if (activeColor == null) activeColor = Colors.black;
+    return Column(
+      children: [
+        Text(title,
+            style: TextStyle(
+                fontSize: 15, fontWeight: FontWeight.bold, color: activeColor)),
+        if (subTitle != null) Text(subTitle),
+      ],
+    );
+  }
+
+  copyWith({String title, subTitle, Color activeColor}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title ?? this.title,
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: activeColor ?? this.activeColor)),
+        Text(
+          subTitle ?? this.subTitle ?? "",
+          style: TextStyle(color: Colors.black54),
+        ),
+      ],
+    );
+  }
+}
+
+class PFormController extends ChangeNotifier {
+  PFormController(this.length);
+  int _page = -1;
+  final int length;
+
+  nextPage() {
+    if (_page < length - 1) _page++;
+
+    notifyListeners();
+  }
+
+  get currentPage => _page;
+
+  set jumpToPage(int p) {
+    _page = p;
+    notifyListeners();
+  }
+
+  prevPage() {
+    if (_page > 0) _page--;
+    notifyListeners();
   }
 }
