@@ -1,12 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:necflislogymenu/details.dart';
-import 'package:necflislogymenu/recently%20watched.dart';
+import 'package:necflislogymenu/Api%20Public%20Interface%20test/widgets/toprated.dart';
+import 'package:necflislogymenu/Api%20Public%20Interface%20test/widgets/trending.dart';
+import 'package:necflislogymenu/Api%20Public%20Interface%20test/widgets/tv.dart';
 import 'package:necflislogymenu/userinfo.dart';
+import 'package:tmdb_api/tmdb_api.dart';
 
-
-import 'hollywood.dart';
 
 class series extends StatefulWidget {
   const series({Key key}) : super(key: key);
@@ -17,22 +16,44 @@ class series extends StatefulWidget {
 
 class _seriesState extends State<series> {
 
-  // ignore: deprecated_member_use
-  List<recent> watched  = new List();
-  // ignore: deprecated_member_use
-  List<tophollywood> movie = new List();
+  final String apikey = '9eca772a0dbad60bc38fcbcb941e8dc4';
+  final String readaccesstoken =
+      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZWNhNzcyYTBkYmFkNjBiYzM4ZmNiY2I5NDFlOGRjNCIsInN1YiI6IjYwYmIxMjU3ZDdmYmRhMDA0MGFkOTA0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9z7GzQ114eEx-fyaFR-32EWFJMc6PfBwtXkatEXaynI';
+  List trendingmovies = [];
+  List topratedmovies = [];
+  List tv = [];
 
   @override
   void initState() {
-    watched = getRecent();
-    movie = getHollywood();
     super.initState();
+    loadmovies();
+  }
+
+  loadmovies() async {
+    TMDB tmdbWithCustomLogs = TMDB(
+      ApiKeys(apikey, readaccesstoken),
+      logConfig: ConfigLogger(
+        showLogs: true,
+        showErrorLogs: true,
+      ),
+    );
+
+    Map trendingresult = await tmdbWithCustomLogs.v3.trending.getTrending();
+    Map topratedresult = await tmdbWithCustomLogs.v3.movies.getTopRated();
+    Map tvresult = await tmdbWithCustomLogs.v3.tv.getPouplar();
+    print((trendingresult));
+    setState(() {
+      trendingmovies = trendingresult['results'];
+      topratedmovies = topratedresult['results'];
+      tv = tvresult['results'];
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            backgroundColor: Colors.black,
           appBar: AppBar(
             elevation: 0.0,
             centerTitle: true,
@@ -53,228 +74,20 @@ class _seriesState extends State<series> {
           ),
 
 
-        body: Container(
-          color: Colors.black,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            body: ListView(
               children: [
-                SizedBox(height: 20,),
-                Container(
-                  margin: EdgeInsets.only(left: 10),
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height-350,
-                        width: MediaQuery.of(context).size.width,
-                       child:
-                       Image.asset("assets/bposter5.jpg",fit: BoxFit.fill,),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              padding: EdgeInsets.only(top: 150, left:10),
-                              child: Text("Aggretsuko",
-                                style: TextStyle(
-                                color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600
-                              ),)
-                          ),
-                          SizedBox(height: 10,),
-                          Container(
-                            alignment: Alignment.center,
-                            width: 150,
-                            height: 35,
-                            margin: EdgeInsets.only(left: 15),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.red,
-                              border: Border.all(width: 2,color: Colors.red),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 50,
-                                  spreadRadius: 3,
-                                  color: Colors.red
-                                )
-                              ]
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              textBaseline: TextBaseline.alphabetic,
-                              children: [
-                                SizedBox(width: 10,),
-                                Icon(FontAwesomeIcons.playCircle,size: 22,color: Colors.white,),
-                                SizedBox(width: 10,),
-                                Text("Resume",style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 1
-                                ),)
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                TV(tv: tv),
+                TrendingMovies(
+                  trending: trendingmovies,
                 ),
-                SizedBox(height: 25,),
-                Padding(
-                    padding: EdgeInsets.only(left: 13),
-                    child: Text("Recently Watched",
-                      style: TextStyle(
-                          color: Colors.white,
-                        fontSize: 25,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.w600
-                      ),
-                    )
-                ),
-                SizedBox(height: 5,),
-                Container(
-                  height: 220,
-                  child: ListView.builder(
-                    itemCount: watched.length,
-                    physics: ClampingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                      return recentlywatched(
-                        imgurl: watched[index].imgurl,
-                        name: watched[index].name,
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: 25,),
-                Padding(
-                    padding: EdgeInsets.only(left: 13),
-                    child: Text("Hollywood Movies",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w600
-                      ),
-                    )
-                ),
-                SizedBox(height: 5,),
-                Container(
-                  height: 220,
-                  child: ListView.builder(
-                    itemCount: movie.length,
-                    physics: ClampingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                      return hollywood(
-                        imgurl: movie[index].imgurl,
-                        name: movie[index].name,
-                      );
-                    },
-                  ),
+                TopRatedMovies(
+                  toprated: topratedmovies,
                 ),
               ],
-            ),
-          ),
-        ),
+            )
 
         )
     );
   }
 }
-
-class hollywood extends StatelessWidget {
-
-  final String imgurl;
-  final String name;
-
-  const hollywood({this.imgurl, this.name});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 15),
-      height: 220,
-      width: 150,
-      decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(16)
-      ),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: CachedNetworkImage(
-              imageUrl: imgurl,fit: BoxFit.cover,
-              height: 220,
-              width: 150,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 200),
-            child: Text(name,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w800
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class recentlywatched extends StatelessWidget {
-
-  final String imgurl;
-  final String name;
-
-  const recentlywatched({this.imgurl, this.name});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 15),
-      height: 220,
-      width: 150,
-      decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(16)
-      ),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: CachedNetworkImage(
-              imageUrl: imgurl,fit: BoxFit.cover,
-              height: 220,
-              width: 150,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 200),
-            child: Text(name,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w800
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
 

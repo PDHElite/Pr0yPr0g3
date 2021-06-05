@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:necflislogymenu/Api%20Public%20Interface%20test/utils/text.dart';
 import 'package:necflislogymenu/Api%20Public%20Interface%20test/widgets/toprated.dart';
 import 'package:necflislogymenu/Api%20Public%20Interface%20test/widgets/trending.dart';
 import 'package:necflislogymenu/Api%20Public%20Interface%20test/widgets/tv.dart';
@@ -51,10 +50,7 @@ class _HomeTestState extends State<HomeTest> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        appBar: AppBar(
-          title: modified_text(text: 'Flutter Movie App ❤️'),
-          backgroundColor: Colors.transparent,
-        ),
+
         body: ListView(
           children: [
             TV(tv: tv),
