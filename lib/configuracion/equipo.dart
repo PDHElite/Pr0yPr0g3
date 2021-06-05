@@ -49,7 +49,7 @@ class _EquipoxState extends State<Equipox> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(right: 20,top: 120),
+            padding: EdgeInsets.only(right: 20,top: 100),
             alignment: Alignment.centerRight,
             width: double.infinity,
             child: Text(
@@ -89,7 +89,7 @@ class _EquipoxState extends State<Equipox> {
           child: Container(
             child: LiquidSwipe(
               pages: [
-                custum("assets/bposter5.jpg","William Alejandro Berganza Espina, 0907-16-7931", Colors.black,"01"),
+                custum("assets/bposter5.jpg","William Alejandro Berganza Espina, 0907-16-7931, Telegram User: @AlexBerganza" , Colors.black,"01"),
                 custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.red,"02"),
                 custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.green,"03"),
                 custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.black,"04"),

@@ -34,8 +34,8 @@ class _SearchnameState extends State<Searchname> {
                 margin: EdgeInsets.all(25),
                 child: TextField(
                   decoration: InputDecoration(
-                      suffixIcon: Icon(FontAwesomeIcons.search,color: Colors.red,),
-                      hintText: "Accion, Novela, Anime...",
+                      prefixIcon: Icon(FontAwesomeIcons.search,color: Colors.red,),
+                      hintText: "Aggretsuko,Beastars, BNA... ",
                       hintStyle: TextStyle(
                           color: Colors.black87,
                           fontStyle: FontStyle.italic,

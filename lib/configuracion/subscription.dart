@@ -52,7 +52,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///other plan layouts
   Widget _otherPlanLayout() {
     return Padding(
       padding: EdgeInsets.only(
@@ -84,7 +83,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///Standard plan box
   Widget _standardPlanBox() {
     return Padding(
       padding:
@@ -126,7 +124,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///Premium plan box
   Widget _premiumPlanBox() {
     return Padding(
       padding:
@@ -170,7 +167,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///build price
   Widget _buildPlanPrice(String price) {
     return Text(
       price,
@@ -180,7 +176,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///build feature row label
   Widget _buildFeatureLabel(String label) {
     return Text(
       label,
@@ -205,13 +200,13 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///other plan label at bottom
+
   Widget _otherPlansLabel() {
     return Padding(
       padding:
       EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.06),
       child: Text(
-        'Other Plans',
+        'Otros Planes',
         style: TextStyle(
             letterSpacing: 0.5,
             color: Colors.grey,
@@ -222,7 +217,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///Cancel subscription option
   Widget _cancelSubscription() {
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
@@ -231,7 +225,7 @@ class _SubscriptionState extends State<Subscription> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'CANCEL SUBSCRIPTION',
+            'CANCELAR SUBSCRIPTION',
             style: TextStyle(
                 letterSpacing: 0.5,
                 color: Colors.white,
@@ -249,7 +243,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///Subscription info box
   Widget _infoBox() {
     return Center(
       child: Padding(
@@ -266,7 +259,7 @@ class _SubscriptionState extends State<Subscription> {
             borderRadius: BorderRadius.circular(5),
           ),
           child: Text(
-            'Your current subscription will end today.\nAnd will be renewed automatically.',
+            'Su suscripción actual finalizara hoy.\nY se renovara automáticamente.',
             style: TextStyle(
                 letterSpacing: 1,
                 color: Colors.black,
@@ -279,7 +272,6 @@ class _SubscriptionState extends State<Subscription> {
     );
   }
 
-  ///Netflix text
   Widget _netflix() {
     return Center(
       child: Padding(
@@ -309,7 +301,7 @@ class _SubscriptionState extends State<Subscription> {
                     color: Colors.white,
                     fontWeight: FontWeight.bold)),
             SizedBox(width: MediaQuery.of(context).size.width * 0.03),
-            Text("Basic Plan",
+            Text("Plan Basico",
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

@@ -1,27 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:necflislogymenu/configuracion/subscription.dart';
-import 'package:necflislogymenu/main.dart';
+import 'package:necflislogymenu/configuracion/BusquedaGeneral/busquedaclientes.dart';
 import 'package:necflislogymenu/menu.dart';
 import 'package:necflislogymenu/widgets/info_card.dart';
 
 
-class Userinfo extends StatefulWidget {
-  const Userinfo({Key key}) : super(key: key);
+class BusquedaGen extends StatefulWidget {
+  const BusquedaGen({Key key}) : super(key: key);
 
   @override
-  _UserinfoState createState() => _UserinfoState();
+  _BusquedaGenState createState() => _BusquedaGenState();
 }
 
-const InfoGenUser = "Mi Perfil";
-const PagosUser = "Mis Pagos";
-const SubcripcionUser = "Mejorar mi plan";
-const LogoutUser = "Salir";
+const Clientes = "Buscar/Listar Clientes";
+const Planes = "Buscar/Listar Planes";
+const Pago = "Buscar/Listar Pagos";
+const Plantilla1 = "Buscar/Listar Categorias";
+const Plantilla2 = "Buscar/Listar Generos";
+const Plantilla3 = "Buscar/Listar Contenido";
 
 
-
-class _UserinfoState extends State<Userinfo> {
+class _BusquedaGenState extends State<BusquedaGen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,22 +48,21 @@ class _UserinfoState extends State<Userinfo> {
               children: <Widget>[
                 CircleAvatar(
                   radius: 75,
-                  backgroundImage: AssetImage('assets/ava2.jpg'),
+                  backgroundImage: AssetImage('assets/ava1.jpg'),
                 ),
-                SizedBox(height: 15,),
                 Text(
-                  "William Alejandro Berganza Espina",
+                  "Administrador",
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 40.0,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Pacifico",
                   ),
                 ),
                 Text(
-                  "PLAN BASICO",
+                  "Busqueda",
                   style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 30.0,
                     color: Colors.blueGrey[200],
                     letterSpacing: 2.5,
                     fontWeight: FontWeight.bold,
@@ -78,15 +77,19 @@ class _UserinfoState extends State<Userinfo> {
                   ),
                 ),
                 InfoCard(
-                    text: InfoGenUser, icon: FontAwesomeIcons.portrait, onPressed: () async {}),
+                    text: Clientes, icon: FontAwesomeIcons.portrait, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BusquedaClientes()));}),
                 InfoCard(
-                    text: PagosUser, icon: FontAwesomeIcons.handHoldingUsd, onPressed: () async {}),
+                    text: Planes, icon: FontAwesomeIcons.magic, onPressed: () async {}),
                 InfoCard(
-                    text: SubcripcionUser,
-                    icon: FontAwesomeIcons.magic,
-                    onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Subscription()));}),
+                    text: Pago,
+                    icon: FontAwesomeIcons.handHoldingUsd,
+                    onPressed: () async {}),
                 InfoCard(
-                    text: LogoutUser, icon: FontAwesomeIcons.powerOff, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));}),
+                    text: Plantilla1, icon: FontAwesomeIcons.photoVideo, onPressed: () async {}),
+                InfoCard(
+                    text: Plantilla2, icon: FontAwesomeIcons.film, onPressed: () async {}),
+                InfoCard(
+                    text: Plantilla3, icon: FontAwesomeIcons.dragon, onPressed: () async {}),
               ],
             ),
           ),

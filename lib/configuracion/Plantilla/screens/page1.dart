@@ -13,7 +13,7 @@ class Page1 extends StatelessWidget {
         children: [
           TProgress(
             hintText: "Nombre (Pelicula/serie,etc)",
-            prefix: Icon(FontAwesomeIcons.film),
+            prefix: Icon(FontAwesomeIcons.photoVideo),
           ),
           SizedBox(
             height: 15,

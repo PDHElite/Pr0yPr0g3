@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:necflislogymenu/menu.dart';
@@ -26,6 +27,22 @@ class _PagosState extends State<Pagos> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+
+        appBar: AppBar(
+          centerTitle: false,
+          leading: IconButton(
+            icon: Icon(CupertinoIcons.back),
+            onPressed: (){
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => menu()));
+            },
+          ),
+          title: Text(
+            'BACK',
+            style: TextStyle(color: Colors.white,fontSize: 14),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.black,
+        ),
 
         resizeToAvoidBottomInset: true,
         body: SafeArea(

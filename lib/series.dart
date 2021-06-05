@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:necflislogymenu/details.dart';
 import 'package:necflislogymenu/recently%20watched.dart';
+import 'package:necflislogymenu/userinfo.dart';
 
 
 import 'hollywood.dart';
@@ -44,7 +45,7 @@ class _seriesState extends State<series> {
                 icon: Icon(FontAwesomeIcons.user),
                 iconSize: 25.0,
                 onPressed: (){
-                  
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Userinfo()));
 
                 },
               ),

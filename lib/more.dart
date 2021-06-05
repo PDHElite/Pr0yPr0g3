@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:necflislogymenu/configuracion/Plantilla/screens/plantillabase.dart';
+import 'package:necflislogymenu/configuracion/busqueda.dart';
 import 'package:necflislogymenu/configuracion/new_user.dart';
+import 'package:necflislogymenu/configuracion/pagosefec.dart';
 import 'package:necflislogymenu/configuracion/subscription.dart';
 import 'package:necflislogymenu/widgets/info_card.dart';
 import 'package:necflislogymenu/configuracion/equipo.dart';
@@ -11,6 +14,7 @@ class More extends StatefulWidget {
   @override
   _MoreState createState() => _MoreState();
 }
+const Busqueda = "Busqueda General";
 const Clientes = "Clientes";
 const Planes = "Tarifas o Planes";
 const Pago = "Pagos";
@@ -28,8 +32,8 @@ class _MoreState extends State<More> {
             child: Column(
               children: <Widget>[
                 CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage('assets/nlogo.png'),
+                  radius: 75,
+                  backgroundImage: AssetImage('assets/ava1.jpg'),
                 ),
                 Text(
                   "Administrador",
@@ -58,17 +62,21 @@ class _MoreState extends State<More> {
                   ),
                 ),
                 InfoCard(
-                    text: Clientes, icon: Icons.phone, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewUser()));}),
+                    text: Busqueda,
+                    icon: FontAwesomeIcons.searchengin,
+                    onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BusquedaGen()));}),
                 InfoCard(
-                    text: Planes, icon: Icons.web, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Subscription()));}),
+                    text: Clientes, icon: FontAwesomeIcons.portrait, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewUser()));}),
+                InfoCard(
+                    text: Planes, icon: FontAwesomeIcons.magic, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Subscription()));}),
                 InfoCard(
                     text: Pago,
-                    icon: Icons.location_city,
-                    onPressed: () async {}),
+                    icon: FontAwesomeIcons.handHoldingUsd,
+                    onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PagosEfectuados()));}),
                 InfoCard(
-                    text: Plantilla, icon: Icons.email, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PlantillaBase()));}),
+                    text: Plantilla, icon: FontAwesomeIcons.fileSignature, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PlantillaBase()));}),
                 InfoCard(
-                    text: Equipo, icon: Icons.email, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Equipox()));}),
+                    text: Equipo, icon: FontAwesomeIcons.sketch, onPressed: () async {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Equipox()));}),
               ],
             ),
           ),

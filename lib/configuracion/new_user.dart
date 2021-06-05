@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:necflislogymenu/menu.dart';
@@ -14,6 +15,21 @@ class _NewUserState extends State<NewUser> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          leading: IconButton(
+            icon: Icon(CupertinoIcons.back),
+            onPressed: (){
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => menu()));
+            },
+          ),
+          title: Text(
+            'BACK',
+            style: TextStyle(color: Colors.white,fontSize: 14),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.black,
+        ),
         backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: Column(
@@ -33,7 +49,7 @@ class _NewUserState extends State<NewUser> {
                 child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(
-                      FontAwesomeIcons.globe,
+                      FontAwesomeIcons.star,
                       color: Colors.red,
                     ),
                     hintText: "Nombre",
@@ -55,7 +71,7 @@ class _NewUserState extends State<NewUser> {
                 child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(
-                      FontAwesomeIcons.globe,
+                      FontAwesomeIcons.star,
                       color: Colors.red,
                     ),
                     hintText: "Apellido",
@@ -77,7 +93,7 @@ class _NewUserState extends State<NewUser> {
                 child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(
-                      FontAwesomeIcons.globe,
+                      FontAwesomeIcons.calendarAlt,
                       color: Colors.red,
                     ),
                     hintText: "Edad",
@@ -99,7 +115,7 @@ class _NewUserState extends State<NewUser> {
                 child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(
-                      FontAwesomeIcons.globe,
+                      FontAwesomeIcons.restroom,
                       color: Colors.red,
                     ),
                     hintText: "Sexo",
