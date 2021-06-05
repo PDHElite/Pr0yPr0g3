@@ -89,11 +89,11 @@ class _EquipoxState extends State<Equipox> {
           child: Container(
             child: LiquidSwipe(
               pages: [
-                custum("assets/bposter5.jpg","William Alejandro Berganza Espina, 0907-16-7931, Telegram User: @AlexBerganza" , Colors.black,"01"),
-                custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.red,"02"),
-                custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.green,"03"),
-                custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.black,"04"),
-                custum("assets/bposter5.jpg","William Alejandro Berganza", Colors.cyan,"05"),
+                custum("assets/will.jpg","William Alejandro Berganza Espina, 0907-16-7931,\nTelegram User: @AlexBerganza" , Colors.black,"01"),
+                custum("assets/UMG.jpg","Darwin Daneri Morales López, 0907-19-11615", Colors.red,"02"),
+                custum("assets/bad1.jpg","Y aqui hirian mis demas compañeros", Colors.green,"03"),
+                custum("assets/bad2.jpg","Si vieran aportado algo", Colors.black,"04"),
+                custum("assets/malasuerte.jpg","Bad Ending", Colors.cyan,"05"),
               ],
             ),
           ),

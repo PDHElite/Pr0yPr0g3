@@ -17,7 +17,7 @@ class More extends StatefulWidget {
 const Busqueda = "Busqueda General";
 const Clientes = "Clientes";
 const Planes = "Tarifas o Planes";
-const Pago = "Pagos";
+const Pago = "Historial Pagos";
 const Plantilla = "Crear plantilla";
 const Equipo = "Integrantes";
 

@@ -13,7 +13,7 @@ class TProgress extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.red),
-        color: Colors.grey.withOpacity(.3),
+        color: Colors.black.withOpacity(.3),
         borderRadius: BorderRadius.circular(15)
       ),
       child: TextFormField(
